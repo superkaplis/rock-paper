@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="rock.js" defer></script>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -18,13 +18,18 @@
   <main>
     <h2>Choose one!</h2>
     <div class="buttons">
-      <button id="rock">Rock</button>
-      <button id="paper">Paper</button>
-      <button id="scissors">Scissors</button>
+      <button onclick="playOnClick('rock')" id="rock">Rock</button>
+      <button onclick="playOnClick('paper')" id="paper">Paper</button>
+      <button onclick="playOnClick('scissors')" id="scissors">Scissors</button>
     </div>
     <div id="results">
       <p class="result-message">You won!</p>
-      <p class="result">0 vs 0</p>
+      <div id="result">
+        <p class="result-player">0</p>
+        <p class="versus">vs</p>
+        <p class="result-pc">0</p>
+      </div>
+      <p id="end-result"></p>
     </div>
 
     </div>

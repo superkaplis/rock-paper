@@ -42,7 +42,7 @@ function playerSelection() {
   while (lolBool) {
     choice = prompt("rock, paper or scissors?");
 
-    if (choice == null) { alert('incorrect value!'); continue ;}
+    if (choice == null) { alert('incorrect value!'); continue; }
 
     if (choice.toLowerCase() == 'rock' || choice.toLowerCase() == 'paper' || choice.toLowerCase() == 'scissors') {
       lolBool = false;
@@ -55,35 +55,51 @@ function playerSelection() {
   return choice.toLowerCase();
 }
 
-function game() {
-  let points = 0;
-  let loses = 0;
+// game function variables;
+let wins = 0;
+let loses = 0;
 
-  //removed for loop here
-    let result = playRound(playerSelection(), getComputerChoice())
-    console.log(result)
-
-    if (result != undefined) {
-      if (result.includes('win')) {
-        points += 1;
-      } else if (result.includes('lose')) {
-        loses += 1;
-      }
-    
-
+function game(round) {
+  
+  endResult.textContent = '';
+  
+  if (round.includes('win')) {
+    wins += 1;
+    resultText.textContent = 'You win this round!';
+  } else if (round.includes('lose')) {
+    loses += 1;
+    resultText.textContent = 'You lose this round!';
+  } else if (round.includes('tie')) {
+    resultText.textContent = 'Tie';
   }
 
-  console.log(`Result: ${points} vs ${loses}`)
+  resultPlayer.textContent = wins;
+  resultComputer.textContent = loses;
+
+  if (loses == 5) {
+    endResult.textContent = 'YOU LOSE THE GAME'
+    endResult.style.color = 'red';
+    loses = 0;
+    wins = 0;
+  } else if (wins == 5) {
+    endResult.textContent = 'YOU WIN THE GAME'
+    endResult.style.color = '#DBF227';
+    wins = 0;
+    loses = 0;
+  }
 }
 
 
+const endResult = document.querySelector('#end-result');
+const resultText = document.querySelector('.result-message');
+const resultPlayer = document.querySelector('.result-player');
+const resultComputer = document.querySelector('.result-pc');
 
-function playOnClick(button){
-  
-  
-  
-  console.log(this.id);
-  console.log(playRound(tempo, getComputerChoice()));
+
+
+function playOnClick(choice) {
+  let roundResult = playRound(choice, getComputerChoice())
+  game(roundResult);
 
 
 
@@ -93,6 +109,5 @@ const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
 
-rockBtn.addEventListener('click', () => console.log(playRound('rock', getComputerChoice())));
-paperBtn.addEventListener('click', () => console.log(playRound('paper', getComputerChoice())));
-scissorsBtn.addEventListener('click', () => console.log(playRound('scissors', getComputerChoice())));
+
+
