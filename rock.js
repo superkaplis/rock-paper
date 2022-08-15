@@ -1,6 +1,5 @@
 function getComputerChoice() {
 
-  //generates random number
   let rando = Math.floor(Math.random() * 3);
 
   switch (rando) {
@@ -37,17 +36,16 @@ function playRound(playerSelection, computerSelection) {
 
 function playerSelection() {
 
-  let lolValue = true;
+  let lolBool = true;
   let choice;
 
-  while (lolValue) {
+  while (lolBool) {
     choice = prompt("rock, paper or scissors?");
 
-    if(choice == null) {
-    }
+    if (choice == null) { alert('incorrect value!'); continue ;}
 
     if (choice.toLowerCase() == 'rock' || choice.toLowerCase() == 'paper' || choice.toLowerCase() == 'scissors') {
-      lolValue = false;
+      lolBool = false;
     } else {
       alert("incorrect value!");
     }
@@ -61,7 +59,7 @@ function game() {
   let points = 0;
   let loses = 0;
 
-  for (let i = 0; i < 5; i++) {
+  //removed for loop here
     let result = playRound(playerSelection(), getComputerChoice())
     console.log(result)
 
@@ -71,11 +69,30 @@ function game() {
       } else if (result.includes('lose')) {
         loses += 1;
       }
-    }
+    
 
   }
 
   console.log(`Result: ${points} vs ${loses}`)
 }
 
-game();
+
+
+function playOnClick(button){
+  
+  
+  
+  console.log(this.id);
+  console.log(playRound(tempo, getComputerChoice()));
+
+
+
+}
+
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', () => console.log(playRound('rock', getComputerChoice())));
+paperBtn.addEventListener('click', () => console.log(playRound('paper', getComputerChoice())));
+scissorsBtn.addEventListener('click', () => console.log(playRound('scissors', getComputerChoice())));
